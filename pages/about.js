@@ -4,7 +4,7 @@ import Header from '../components/Header'
 const Index = () => (
 	<div>
 		<Header />
-		<p>MainPage</p>
+		<p>About</p>
 	</div>
 )
 
