@@ -1,22 +1,53 @@
 import axios from 'axios';
-import {useState, userEffect} from 'react';
+import {useState, useEffect} from 'react';
+import _ from 'lodash';
+import Loading from '../Loading';
+import Filter from '../Filter';
 import User from './User';
 
-function UsersList() {
-	const [users, setUsersList] = useState([]);
+const UsersList = (props) => {
+	const [users, setData] = useState([]);
+	const [filterUsers, setFilterData] = useState([]);
+	const [query, setQuery] = useState('');
+	const [prevQuery, setPrevQuery] = useState('');
+
+	const fetchData = async () => {
+		const result = await axios(
+			'https://jsonplaceholder.typicode.com/users',
+		);
+
+		setData(result.data);
+	};
+
+	const changeQueryString = evt => {
+		const currentString = evt.target.value;
+		setQuery(currentString);
+	};
+	
+	useEffect(() => {
+		fetchData();
+	}, []);
 
 	useEffect(() => {
-		axios.get('https://jsonplaceholder.typicode.com/users')
-			.then(users => setUsersList(users))
-			.catch(err => console.warn(err))
+		if(query !== prevQuery) {
+			setPrevQuery(query);
+			const filtersData = _.filter(users, user => user.name.toLowerCase().match(query))
+			setFilterData(filtersData);
+		}
 	});
-
-	console.log(users)
 	
 	return (
-		<ul>
-			{props.users.map(it => <User user={it} key={it.id}/>)}
-		</ul>
+		<>
+			<Filter changeQueryString={changeQueryString}/>
+			<ul>
+
+				{_.size(filterUsers)
+					? filterUsers.map(user => <User user={user} key={user.id} />)
+					: users.map(user => <User user={user} key={user.id} />)}
+
+				<Loading isShown={!Boolean(users.length)}/>
+			</ul>
+		</>
 	)
 };
 
