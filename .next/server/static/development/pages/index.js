@@ -194,6 +194,101 @@ var Index = function Index(props) {
 
 /***/ }),
 
+/***/ "./components/UsersLIst/User.js":
+/*!**************************************!*\
+  !*** ./components/UsersLIst/User.js ***!
+  \**************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+var _jsxFileName = "/home/slava/\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B/_work/ssr-react-next/components/UsersLIst/User.js";
+
+
+var User = function User(props) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 3
+    },
+    __self: this
+  }, props.user.name);
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (User);
+
+/***/ }),
+
+/***/ "./components/UsersLIst/index.js":
+/*!***************************************!*\
+  !*** ./components/UsersLIst/index.js ***!
+  \***************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "axios");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _User__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./User */ "./components/UsersLIst/User.js");
+var _jsxFileName = "/home/slava/\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B/_work/ssr-react-next/components/UsersLIst/index.js";
+
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+function UsersList() {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      users = _useState2[0],
+      setUsersList = _useState2[1];
+
+  useEffect(function () {
+    axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('https://jsonplaceholder.typicode.com/users').then(function (users) {
+      return setUsersList(users);
+    }).catch(function (err) {
+      return console.warn(err);
+    });
+  });
+  console.log(users);
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 17
+    },
+    __self: this
+  }, props.users.map(function (it) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_User__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      user: it,
+      key: it.id,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 18
+      },
+      __self: this
+    });
+  }));
+}
+
+;
+/* harmony default export */ __webpack_exports__["default"] = (UsersList);
+
+/***/ }),
+
 /***/ "./pages/index.js":
 /*!************************!*\
   !*** ./pages/index.js ***!
@@ -206,7 +301,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_Layout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Layout */ "./components/Layout/index.js");
+/* harmony import */ var _components_UsersLIst__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/UsersLIst */ "./components/UsersLIst/index.js");
 var _jsxFileName = "/home/slava/\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B/_work/ssr-react-next/pages/index.js";
+
 
 
 
@@ -214,16 +311,22 @@ var Index = function Index() {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Layout__WEBPACK_IMPORTED_MODULE_1__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 4
+      lineNumber: 5
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 5
+      lineNumber: 6
     },
     __self: this
-  }, "MainPage"));
+  }, "MainPage"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_UsersLIst__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 7
+    },
+    __self: this
+  }));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Index);
@@ -239,6 +342,17 @@ var Index = function Index() {
 
 module.exports = __webpack_require__(/*! ./pages/index.js */"./pages/index.js");
 
+
+/***/ }),
+
+/***/ "axios":
+/*!************************!*\
+  !*** external "axios" ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("axios");
 
 /***/ }),
 
